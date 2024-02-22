@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
+import Spacer from "./components/Spacer";
 
 function App() {
   const [messages, setMessages] = useState<string[]>([]);
@@ -28,40 +29,53 @@ function App() {
   }, [messages]);
 
   return (
-    <>
+    <div id="chat-window">
       <div ref={chatBoxRef} id="chat-box">
         {messages.map((message, index) => {
           if (index !== messages.length - 1) {
             return (
-              <div key={index}>
-                <div key={index}>{message}</div>
+              <div className="messageInstance" key={index}>
+                <div className="messageBox">
+                  <div className="messageText" key={index}>
+                    {message}
+                  </div>
+                </div>
                 <hr />
               </div>
             );
           }
           return (
-            <div key={index}>
-              <div key={index}>{message}</div>
+            <div className="messageInstance" key={index}>
+              <div className="messageBox">
+                <div className="messageText" key={index}>
+                  {message}
+                </div>
+              </div>
             </div>
           );
         })}
       </div>
-      <textarea
-        id="message"
-        name="message"
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
-        onKeyDown={handleKeyDown}
-      />
-      <button
-        onClick={() => {
-          setMessages([...messages, message]);
-          setMessage(""); // Clear the message input field
-        }}
-      >
-        Send
-      </button>
-    </>
+      <Spacer height="20px" />
+      <div id="chat-input">
+        <textarea
+          id="message"
+          name="message"
+          value={message}
+          onChange={(e) => setMessage(e.target.value)}
+          onKeyDown={handleKeyDown}
+        />
+        <Spacer width="10px" />
+        <button
+          id="send-button"
+          onClick={() => {
+            setMessages([...messages, message]);
+            setMessage("");
+          }}
+        >
+          Send
+        </button>
+      </div>
+    </div>
   );
 }
 
