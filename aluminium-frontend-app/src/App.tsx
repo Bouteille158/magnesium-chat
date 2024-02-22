@@ -25,16 +25,16 @@ function App() {
         {messages.map((message, index) => {
           if (index !== messages.length - 1) {
             return (
-              <>
+              <div key={index}>
                 <div key={index}>{message}</div>
                 <hr />
-              </>
+              </div>
             );
           }
           return (
-            <>
+            <div key={index}>
               <div key={index}>{message}</div>
-            </>
+            </div>
           );
         })}
       </div>
