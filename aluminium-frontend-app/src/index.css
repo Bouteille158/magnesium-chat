@@ -81,7 +81,7 @@ button:focus-visible {
   padding: 10px;
 }
 
-#message {
+#message-input {
   box-sizing: border-box;
   flex: 5;
   height: 100%;

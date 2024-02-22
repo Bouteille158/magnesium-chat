@@ -59,6 +59,7 @@ function App() {
       <div id="chat-input">
         <textarea
           id="message"
+          id="message-input"
           name="message"
           value={message}
           onChange={(e) => setMessage(e.target.value)}
