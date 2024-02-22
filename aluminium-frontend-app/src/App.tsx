@@ -9,12 +9,12 @@ function App() {
     if (event.key === "Enter") {
       event.preventDefault(); // Prevents the default action of Enter key press
       if (event.shiftKey) {
-        // If Shift + Enter is pressed, send the message
+        // If Shift + Enter is pressed, add a new line to the message
+        setMessage((prevMessage) => prevMessage + "\n");
+      } else {
+        // If only Enter is pressed, send the message
         setMessages([...messages, message]);
         setMessage(""); // Clear the message input field
-      } else {
-        // If only Enter is pressed, add a new line to the message
-        setMessage((prevMessage) => prevMessage + "\n");
       }
     }
   };
