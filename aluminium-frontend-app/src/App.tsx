@@ -26,8 +26,7 @@ function App() {
           <div key={index}>{message}</div>
         ))}
       </div>
-      <input
-        type="text"
+      <textarea
         id="message"
         name="message"
         value={message}
