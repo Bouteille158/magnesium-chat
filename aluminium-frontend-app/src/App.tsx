@@ -22,9 +22,21 @@ function App() {
   return (
     <>
       <div id="chat-box" style={{ whiteSpace: "pre-wrap" }}>
-        {messages.map((message, index) => (
-          <div key={index}>{message}</div>
-        ))}
+        {messages.map((message, index) => {
+          if (index !== messages.length - 1) {
+            return (
+              <>
+                <div key={index}>{message}</div>
+                <hr />
+              </>
+            );
+          }
+          return (
+            <>
+              <div key={index}>{message}</div>
+            </>
+          );
+        })}
       </div>
       <textarea
         id="message"
