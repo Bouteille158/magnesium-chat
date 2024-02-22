@@ -21,7 +21,7 @@ function App() {
 
   return (
     <>
-      <div id="chat-box">
+      <div id="chat-box" style={{ whiteSpace: "pre-wrap" }}>
         {messages.map((message, index) => (
           <div key={index}>{message}</div>
         ))}
