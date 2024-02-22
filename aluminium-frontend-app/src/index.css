@@ -90,6 +90,7 @@ button:focus-visible {
 
 #send-button {
   height: 100%;
+  max-height: 5vh;
   flex: 1;
   box-sizing: border-box;
 }
