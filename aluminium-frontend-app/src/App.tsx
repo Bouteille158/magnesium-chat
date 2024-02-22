@@ -28,6 +28,15 @@ function App() {
     }
   }, [messages]);
 
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
+
+  useEffect(() => {
+    if (textAreaRef.current) {
+      textAreaRef.current.style.height = "inherit";
+      textAreaRef.current.style.height = `${textAreaRef.current.scrollHeight}px`;
+    }
+  }, [message]);
+
   return (
     <div id="chat-window">
       <div ref={chatBoxRef} id="chat-box">
@@ -58,7 +67,7 @@ function App() {
       <Spacer height="20px" />
       <div id="chat-input">
         <textarea
-          id="message"
+          ref={textAreaRef}
           id="message-input"
           name="message"
           value={message}
