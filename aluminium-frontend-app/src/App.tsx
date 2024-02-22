@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 
 function App() {
@@ -19,9 +19,17 @@ function App() {
     }
   };
 
+  const chatBoxRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (chatBoxRef.current) {
+      chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
+    }
+  }, [messages]);
+
   return (
     <>
-      <div id="chat-box" style={{ whiteSpace: "pre-wrap" }}>
+      <div ref={chatBoxRef} id="chat-box">
         {messages.map((message, index) => {
           if (index !== messages.length - 1) {
             return (
