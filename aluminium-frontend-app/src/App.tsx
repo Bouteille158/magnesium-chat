@@ -13,6 +13,10 @@ function App() {
         // If Shift + Enter is pressed, add a new line to the message
         setMessage((prevMessage) => prevMessage + "\n");
       } else {
+        // If message is empty, do nothing
+        if (message.trim() === "") {
+          return;
+        }
         // If only Enter is pressed, send the message
         setMessages([...messages, message]);
         setMessage(""); // Clear the message input field
