@@ -131,8 +131,19 @@ button:focus-visible {
   align-items: center;
   padding: 10px;
   text-align: left;
-  word-wrap: break-word;
-  word-break: break-all;
   overflow-wrap: break-word;
-  max-width: 90vw;
+}
+
+.messageText {
+  flex: 1;
+}
+
+.messageAuthor {
+  font-weight: 500;
+  margin-right: 10px;
+  width: 80px;
+  max-width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }

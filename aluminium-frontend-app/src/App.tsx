@@ -29,7 +29,11 @@ function App() {
           return;
         }
         // TODO: Add author to the message
-        let newMessage: Message = { text: message, author: "user" };
+        let newMessage: Message = {
+          text: message,
+          author: "user",
+          timestamp: new Date().toISOString(),
+        };
         // If only Enter is pressed, send the message
         // TODO: Send the message to the server
         setMessages([...messages, newMessage]);
@@ -66,6 +70,8 @@ function App() {
                   <div className="messageAuthor">{message.author}</div>
                   <Spacer width="10px" />
                   <div className="messageText">{message.text}</div>
+                  <Spacer width="10px" />
+                  <div className="messageTimestamp">{message.timestamp}</div>
                 </div>
                 <hr />
               </div>
@@ -77,6 +83,8 @@ function App() {
                 <div className="messageAuthor">{message.author}</div>
                 <Spacer width="10px" />
                 <div className="messageText">{message.text}</div>
+                <Spacer width="10px" />
+                <div className="messageTimestamp">{message.timestamp}</div>
               </div>
             </div>
           );
@@ -98,7 +106,14 @@ function App() {
           onClick={() => {
             // TODO: Send the message to the server
             // TODO: Add author to the message
-            setMessages([...messages, { text: message, author: "user" }]);
+            setMessages([
+              ...messages,
+              {
+                text: message,
+                author: "user",
+                timestamp: new Date().toISOString(),
+              },
+            ]);
             setMessage("");
           }}
         >
