@@ -1,15 +1,11 @@
 import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import Spacer from "./components/Spacer";
+import { Message } from "./types/Message";
 
 function App() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [message, setMessage] = useState<string>("");
-
-  type Message = {
-    text: string;
-    author: string;
-  };
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === "Enter") {
