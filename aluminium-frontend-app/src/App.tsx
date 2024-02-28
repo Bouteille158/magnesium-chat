@@ -3,8 +3,13 @@ import "./App.css";
 import Spacer from "./components/Spacer";
 
 function App() {
-  const [messages, setMessages] = useState<string[]>([]);
+  const [messages, setMessages] = useState<Message[]>([]);
   const [message, setMessage] = useState<string>("");
+
+  type Message = {
+    text: string;
+    author: string;
+  };
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === "Enter") {
@@ -17,8 +22,11 @@ function App() {
         if (message.trim() === "") {
           return;
         }
+        // TODO: Add author to the message
+        let newMessage: Message = { text: message, author: "user" };
         // If only Enter is pressed, send the message
-        setMessages([...messages, message]);
+        // TODO: Send the message to the server
+        setMessages([...messages, newMessage]);
         setMessage(""); // Clear the message input field
       }
     }
@@ -49,8 +57,12 @@ function App() {
             return (
               <div className="messageInstance" key={index}>
                 <div className="messageBox">
+                  <div className="messageAuthor" key={index}>
+                    {message.author}
+                  </div>
+                  <Spacer width="10px" />
                   <div className="messageText" key={index}>
-                    {message}
+                    {message.text}
                   </div>
                 </div>
                 <hr />
@@ -60,8 +72,12 @@ function App() {
           return (
             <div className="messageInstance" key={index}>
               <div className="messageBox">
+                <div className="messageAuthor" key={index}>
+                  {message.author}
+                </div>
+                <Spacer width="10px" />
                 <div className="messageText" key={index}>
-                  {message}
+                  {message.text}
                 </div>
               </div>
             </div>
@@ -82,7 +98,9 @@ function App() {
         <button
           id="send-button"
           onClick={() => {
-            setMessages([...messages, message]);
+            // TODO: Send the message to the server
+            // TODO: Add author to the message
+            setMessages([...messages, { text: message, author: "user" }]);
             setMessage("");
           }}
         >
