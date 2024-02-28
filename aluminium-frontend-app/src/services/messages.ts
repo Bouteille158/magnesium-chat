@@ -4,8 +4,7 @@ export const getMessages = async () => {
   const response = await fetch(
     `${import.meta.env.VITE_SODIUM_API_URL}/messages`
   );
-  const data = await response.json();
-  console.log("data: ", data);
+  const data: Message[] = await response.json();
   return data;
 };
 
