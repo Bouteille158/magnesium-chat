@@ -3,6 +3,8 @@ import "./App.css";
 import Spacer from "./components/Spacer";
 import { Message } from "./types/Message";
 import { getMessages } from "./services/messages";
+import { format } from "path";
+import { formatTimestamp } from "./services/timestamp";
 
 function App() {
   useEffect(() => {
@@ -63,6 +65,7 @@ function App() {
     <div id="chat-window">
       <div ref={chatBoxRef} id="chat-box">
         {messages.map((message, index) => {
+          const messageTimestamp = formatTimestamp(message.timestamp);
           if (index !== messages.length - 1) {
             return (
               <div className="messageInstance" key={index}>
@@ -71,7 +74,7 @@ function App() {
                   <Spacer width="10px" />
                   <div className="messageText">{message.text}</div>
                   <Spacer width="10px" />
-                  <div className="messageTimestamp">{message.timestamp}</div>
+                  <div className="messageTimestamp">{messageTimestamp}</div>
                 </div>
                 <hr />
               </div>
@@ -84,7 +87,7 @@ function App() {
                 <Spacer width="10px" />
                 <div className="messageText">{message.text}</div>
                 <Spacer width="10px" />
-                <div className="messageTimestamp">{message.timestamp}</div>
+                <div className="messageTimestamp">{messageTimestamp}</div>
               </div>
             </div>
           );

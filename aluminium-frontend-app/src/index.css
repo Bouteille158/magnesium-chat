@@ -147,3 +147,9 @@ button:focus-visible {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+.messageTimestamp {
+  font-size: 0.8em;
+  color: #6c6c6c;
+  margin-left: 10px;
+}
