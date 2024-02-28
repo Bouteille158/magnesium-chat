@@ -15,6 +15,10 @@ public class Message {
     private String author;
     private String timestamp;
 
+    // Default constructor
+    public Message() {
+    }
+
     public Message(String text, String author, String timestamp) {
         this.text = text;
         this.author = author;
