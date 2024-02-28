@@ -15,16 +15,16 @@ public class MessageController {
     }
 
     class Message {
-        private String message;
+        private String text;
         private String author;
 
-        public Message(String message, String author) {
-            this.message = message;
+        public Message(String text, String author) {
+            this.text = text;
             this.author = author;
         }
 
-        public String getMessage() {
-            return message;
+        public String getText() {
+            return text;
         }
 
         public String getAuthor() {
