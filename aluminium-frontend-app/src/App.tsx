@@ -2,8 +2,18 @@ import { useEffect, useRef, useState } from "react";
 import "./App.css";
 import Spacer from "./components/Spacer";
 import { Message } from "./types/Message";
+import { getMessages } from "./services/messages";
 
 function App() {
+  useEffect(() => {
+    // Get messages from the server
+    console.log("Getting messages from the server...");
+    getMessages().then((data) => {
+      console.table(data);
+      setMessages(data);
+    });
+  }, []);
+
   const [messages, setMessages] = useState<Message[]>([]);
   const [message, setMessage] = useState<string>("");
 
@@ -53,13 +63,9 @@ function App() {
             return (
               <div className="messageInstance" key={index}>
                 <div className="messageBox">
-                  <div className="messageAuthor" key={index}>
-                    {message.author}
-                  </div>
+                  <div className="messageAuthor">{message.author}</div>
                   <Spacer width="10px" />
-                  <div className="messageText" key={index}>
-                    {message.text}
-                  </div>
+                  <div className="messageText">{message.text}</div>
                 </div>
                 <hr />
               </div>
@@ -68,13 +74,9 @@ function App() {
           return (
             <div className="messageInstance" key={index}>
               <div className="messageBox">
-                <div className="messageAuthor" key={index}>
-                  {message.author}
-                </div>
+                <div className="messageAuthor">{message.author}</div>
                 <Spacer width="10px" />
-                <div className="messageText" key={index}>
-                  {message.text}
-                </div>
+                <div className="messageText">{message.text}</div>
               </div>
             </div>
           );
