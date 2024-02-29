@@ -23,6 +23,8 @@ pipeline {
         stage('Build React App') {
             steps {
                 dir('aluminium-frontend-app') {
+                    sh 'nvm use 20'
+                    sh 'npm install -g pnpm'
                     sh 'pnpm install'
                     sh 'pnpm run build'
                 }
