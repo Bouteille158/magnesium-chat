@@ -36,9 +36,9 @@ pipeline {
                 dir('sodium-api') {
                     echo 'Need to deploy Java API'
                 }
-                dir('aluminium-frontend-app') {
+                dir('aluminium-frontend-app/dist') {
                     sshagent (credentials: ['a2f348fc-7284-439e-8dbb-f791c41ea0a3']) {
-                        sh "scp -r dist/* ${env.USERNAME}@${env.SERVER_ADDRESS}:${env.SERVER_PATH}"
+                        sh "scp -v -r * ${env.USERNAME}@${env.SERVER_ADDRESS}:${env.SERVER_PATH}"
                     }
                 }
             }
