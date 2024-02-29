@@ -5,7 +5,7 @@ pipeline {
         stage('Build Java API') {
             steps {
                 dir('sodium-api') {
-                    configFileProvider([configFile(fileId: '1742fa25-2248-460a-8b34-37871645f7c2', targetLocation: 'sodium-api/src/main/resources/application.properties')]) {
+                    configFileProvider([configFile(fileId: '1742fa25-2248-460a-8b34-37871645f7c2', targetLocation: 'src/main/resources/application.properties')]) {
                         sh './mvnw clean install'
                     }
                 }
@@ -14,7 +14,7 @@ pipeline {
         stage('Test Java API') {
             steps {
                 dir('sodium-api') {
-                    configFileProvider([configFile(fileId: '1742fa25-2248-460a-8b34-37871645f7c2', targetLocation: 'sodium-api/src/main/resources/application.properties')]) {
+                    configFileProvider([configFile(fileId: '1742fa25-2248-460a-8b34-37871645f7c2', targetLocation: 'src/main/resources/application.properties')]) {
                         sh './mvnw test'
                     }
                 }
