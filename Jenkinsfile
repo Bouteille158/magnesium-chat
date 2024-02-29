@@ -31,7 +31,6 @@ pipeline {
                 }
             }
         }
-    }
     stage('Deploy') {
         steps {
             dir('sodium-api') {
@@ -43,5 +42,6 @@ pipeline {
                 }
             }
         }
+    }
     }
 }
