@@ -38,7 +38,7 @@ pipeline {
                 }
                 dir('aluminium-frontend-app') {
                     sshagent (credentials: ['a2f348fc-7284-439e-8dbb-f791c41ea0a3']) {
-                        sh "scp -r dist ${USERNAME}@${env.SERVER_ADDRESS}:${env.SERVER_PATH}"
+                        sh "scp -r dist/* ${env.USERNAME}@${env.SERVER_ADDRESS}:${env.SERVER_PATH}"
                     }
                 }
             }
