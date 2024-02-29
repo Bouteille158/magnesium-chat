@@ -5,7 +5,10 @@ export const getMessages = async () => {
     `${import.meta.env.VITE_SODIUM_API_URL}/messages`
   );
   const data: Message[] = await response.json();
-  return data;
+
+  return data.sort((a, b) => {
+    return new Date(a.timestamp).getTime() - new Date(b.timestamp).getTime();
+  });
 };
 
 export const postMessage = async (message: Message) => {
