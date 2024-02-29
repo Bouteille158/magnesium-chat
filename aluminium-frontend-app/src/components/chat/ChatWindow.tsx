@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-import { getMessages } from "../../services/messages";
+import { getMessages, postMessage } from "../../services/messages";
 import { Message } from "../../types/Message";
 import Spacer from "../Spacer";
 import MessageInstance from "./MessageInstance";
@@ -18,31 +18,39 @@ function ChatWindow(props: ChatWindowProps) {
     });
   }, []);
 
+  const sendMessageToDatabase = (message: Message) => {
+    // Send the message to the server
+    console.log("Sending message to the server...");
+    postMessage(message).then((data) => {
+      console.table(data);
+    });
+  };
+
+  const sendButtonHandler = () => {
+    let newMessage: Message = {
+      text: message,
+      author: author,
+      timestamp: new Date().toISOString(),
+    };
+
+    setMessages([...messages, newMessage]);
+    sendMessageToDatabase(newMessage);
+    setMessage(""); // Clear the message input field
+  };
+
   const [messages, setMessages] = useState<Message[]>([]);
   const [message, setMessage] = useState<string>("");
+  const [author, setAuthor] = useState<string>("");
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
-    if (event.key === "Enter") {
-      event.preventDefault(); // Prevents the default action of Enter key press
-      if (event.shiftKey) {
-        // If Shift + Enter is pressed, add a new line to the message
-        setMessage((prevMessage) => prevMessage + "\n");
-      } else {
-        // If message is empty, do nothing
-        if (message.trim() === "") {
-          return;
-        }
-        // TODO: Add author to the message
-        let newMessage: Message = {
-          text: message,
-          author: "user",
-          timestamp: new Date().toISOString(),
-        };
-        // If only Enter is pressed, send the message
-        // TODO: Send the message to the server
-        setMessages([...messages, newMessage]);
-        setMessage(""); // Clear the message input field
+    if (event.key === "Enter" && !event.shiftKey) {
+      event.preventDefault(); // Prevent Enter from adding a new line
+
+      // If message is empty, do nothing
+      if (message.trim() === "") {
+        return;
       }
+      sendButtonHandler();
     }
   };
 
@@ -78,6 +86,12 @@ function ChatWindow(props: ChatWindowProps) {
       </div>
       <Spacer height="20px" />
       <div id="chat-input">
+        <input
+          name="author"
+          value={author}
+          onChange={(e) => setAuthor(e.target.value)}
+        />
+        <Spacer width="10px" />
         <textarea
           ref={textAreaRef}
           id="message-input"
@@ -90,17 +104,7 @@ function ChatWindow(props: ChatWindowProps) {
         <button
           id="send-button"
           onClick={() => {
-            // TODO: Send the message to the server
-            // TODO: Add author to the message
-            setMessages([
-              ...messages,
-              {
-                text: message,
-                author: "user",
-                timestamp: new Date().toISOString(),
-              },
-            ]);
-            setMessage("");
+            sendButtonHandler();
           }}
         >
           Send
