@@ -1,0 +1,9 @@
+{
+  "properties": [
+    {
+      "name": "aluminium.app.url",
+      "type": "java.lang.String",
+      "description": "URL of the aluminium front end application"
+    }
+  ]
+}
