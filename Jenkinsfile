@@ -23,10 +23,11 @@ pipeline {
         stage('Build React App') {
             steps {
                 dir('aluminium-frontend-app') {
-                    sh 'nvm use 20'
-                    sh 'npm install -g pnpm'
-                    sh 'pnpm install'
-                    sh 'pnpm run build'
+                    configFileProvider([configFile(fileId: 'b4252485-75dc-4b63-b8ff-1875dc58f67e', targetLocation: '.env')]) {
+                        sh 'npm install -g pnpm'
+                        sh 'pnpm install'
+                        sh 'pnpm run build'
+                    }
                 }
             }
         }
