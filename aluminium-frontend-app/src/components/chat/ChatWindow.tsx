@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { getMessages } from "../../services/messages";
 import { Message } from "../../types/Message";
-import { formatTimestamp } from "../../services/timestamp";
 import Spacer from "../Spacer";
+import MessageInstance from "./MessageInstance";
 
 interface ChatWindowProps {
   // Définissez ici les props de votre composant
@@ -67,31 +67,12 @@ function ChatWindow(props: ChatWindowProps) {
     <div id="chat-window">
       <div ref={chatBoxRef} id="chat-box">
         {messages.map((message, index) => {
-          const messageTimestamp = formatTimestamp(message.timestamp);
-          if (index !== messages.length - 1) {
-            return (
-              <div className="messageInstance" key={index}>
-                <div className="messageBox">
-                  <div className="messageAuthor">{message.author}</div>
-                  <Spacer width="10px" />
-                  <div className="messageText">{message.text}</div>
-                  <Spacer width="10px" />
-                  <div className="messageTimestamp">{messageTimestamp}</div>
-                </div>
-                <hr />
-              </div>
-            );
-          }
           return (
-            <div className="messageInstance" key={index}>
-              <div className="messageBox">
-                <div className="messageAuthor">{message.author}</div>
-                <Spacer width="10px" />
-                <div className="messageText">{message.text}</div>
-                <Spacer width="10px" />
-                <div className="messageTimestamp">{messageTimestamp}</div>
-              </div>
-            </div>
+            <MessageInstance
+              message={message}
+              key={index}
+              isLastMessage={index === messages.length - 1}
+            />
           );
         })}
       </div>
