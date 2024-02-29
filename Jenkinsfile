@@ -41,7 +41,7 @@ pipeline {
                         echo 'Deploying React App'
                         echo "Deploying to ${env.SERVER_ADDRESS}:${env.SERVER_PATH}"
                         echo "Username: ${env.USERNAME}"
-                        sh 'scp -r dist ${USERNAME}@${env.SERVER_ADDRESS}:${env.SERVER_PATH}'
+                        sh "scp -r dist ${USERNAME}@${env.SERVER_ADDRESS}:${env.SERVER_PATH}"
                     }
                 }
             }
