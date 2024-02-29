@@ -22,6 +22,9 @@ public class MessageController {
 
     @PostMapping("/messages")
     public Message createMessage(@RequestBody Message message) {
+        if (message.getId() != null) {
+            throw new IllegalArgumentException("You cannot create a message with an ID");
+        }
         return messageRepository.save(message);
     }
 
