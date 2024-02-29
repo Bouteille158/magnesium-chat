@@ -8,7 +8,6 @@ export interface MessageInstanceProps {
 }
 
 function MessageInstance(props: MessageInstanceProps) {
-  ``;
   const messageTimestamp = formatTimestamp(props.message.timestamp);
   return (
     <div className="messageInstance">
