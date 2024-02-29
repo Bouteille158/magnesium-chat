@@ -4,11 +4,7 @@ import { Message } from "../../types/Message";
 import Spacer from "../Spacer";
 import MessageInstance from "./MessageInstance";
 
-interface ChatWindowProps {
-  // Définissez ici les props de votre composant
-}
-
-function ChatWindow(props: ChatWindowProps) {
+function ChatWindow() {
   useEffect(() => {
     // Get messages from the server
     console.log("Getting messages from the server...");
