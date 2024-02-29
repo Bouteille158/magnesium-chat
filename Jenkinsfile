@@ -38,7 +38,7 @@ pipeline {
                 }
                 dir('aluminium-frontend-app') {
                     withCredentials([usernamePassword(credentialsId: 'be54c242-e2b7-4901-9781-1d0434d5f6f7', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                        sh 'scp -r dist ${USERNAME}@${env.SERVER_ADDRESS}:${env.SERVER_PATH}'
+                        sh 'scp -r dist ${USERNAME}@${SERVER_ADDRESS}:${SERVER_PATH}'
                     }
                 }
             }
