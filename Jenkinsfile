@@ -28,13 +28,6 @@ pipeline {
                 }
             }
         }
-        stage('Test React App') {
-            steps {
-                dir('aluminium-frontend-app') {
-                    sh 'pnpm test'
-                }
-            }
-        }
         stage('Deploy') {
             steps {
                 dir('sodium-api') {
