@@ -1,4 +1,3 @@
-import React from "react";
 import { Message } from "../../types/Message";
 import Spacer from "../Spacer";
 import { formatTimestamp } from "../../services/timestamp";
