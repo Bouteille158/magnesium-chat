@@ -37,10 +37,7 @@ pipeline {
                     echo 'Need to deploy Java API'
                 }
                 dir('aluminium-frontend-app') {
-                    withCredentials([usernamePassword(credentialsId: 'be54c242-e2b7-4901-9781-1d0434d5f6f7', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
-                        echo 'Deploying React App'
-                        echo "Deploying to ${env.SERVER_ADDRESS}:${env.SERVER_PATH}"
-                        echo "Username: ${env.USERNAME}"
+                    sshagent (credentials: ['a2f348fc-7284-439e-8dbb-f791c41ea0a3']) {
                         sh "scp -r dist ${USERNAME}@${env.SERVER_ADDRESS}:${env.SERVER_PATH}"
                     }
                 }
