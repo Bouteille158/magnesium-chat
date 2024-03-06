@@ -18,8 +18,9 @@ public class WebConfig {
             @Override
             public void addCorsMappings(@SuppressWarnings("null") CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins(aluminiumAppUrl)
-                        .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS");
+                        .allowedOriginPatterns(aluminiumAppUrl)
+                        .allowedMethods("GET", "POST", "PUT", "DELETE", "HEAD", "OPTIONS")
+                        .allowCredentials(true);
             }
         };
     }
