@@ -3,8 +3,34 @@ import { getMessages, postMessage } from "../../services/messages";
 import { Message } from "../../types/Message";
 import Spacer from "../Spacer";
 import MessageInstance from "./MessageInstance";
+import { useSubscription, useStompClient, IMessage } from "react-stomp-hooks";
 
 function ChatWindow() {
+  const [lastMessage, setLastMessage] = useState("No message received yet");
+  useSubscription("/topic/messages", (message) =>
+    handleNewWebSocketMessage(message)
+  );
+
+  const handleNewWebSocketMessage = (message: IMessage) => {
+    setLastMessage(message.body);
+    console.log("Received a new message from the server: ", message.body);
+    getMessages().then((data) => {
+      console.table(data);
+      setMessages(data);
+    });
+  };
+
+  const client = useStompClient();
+
+  const sendMessageWS = (message: Message) => {
+    if (client && client.connected) {
+      client.publish({
+        destination: "/app/send",
+        body: JSON.stringify(message),
+      });
+    }
+  };
+
   useEffect(() => {
     // Get messages from the server
     console.log("Getting messages from the server...");
@@ -31,6 +57,7 @@ function ChatWindow() {
 
     setMessages([...messages, newMessage]);
     sendMessageToDatabase(newMessage);
+    sendMessageWS(newMessage);
     setMessage(""); // Clear the message input field
   };
 
@@ -80,6 +107,8 @@ function ChatWindow() {
           );
         })}
       </div>
+      <div>Last Message: {lastMessage}</div>
+
       <Spacer height="20px" />
       <div id="chat-input">
         <input
