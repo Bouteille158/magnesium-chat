@@ -1,23 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
-import { getMessages, postMessage } from "../../services/messages";
+import { getMessages } from "../../services/messages";
 import { Message } from "../../types/Message";
 import Spacer from "../Spacer";
 import MessageInstance from "./MessageInstance";
 import { useSubscription, useStompClient, IMessage } from "react-stomp-hooks";
 
 function ChatWindow() {
-  const [lastMessage, setLastMessage] = useState("No message received yet");
   useSubscription("/topic/messages", (message) =>
     handleNewWebSocketMessage(message)
   );
 
   const handleNewWebSocketMessage = (message: IMessage) => {
-    setLastMessage(message.body);
     console.log("Received a new message from the server: ", message.body);
-    getMessages().then((data) => {
-      console.table(data);
-      setMessages(data);
-    });
+    let newMessage: Message = JSON.parse(message.body);
+    setMessages([...messages, newMessage]);
   };
 
   const client = useStompClient();
@@ -31,8 +27,8 @@ function ChatWindow() {
     }
   };
 
+  // Get messages from the server the first time the component is rendered
   useEffect(() => {
-    // Get messages from the server
     console.log("Getting messages from the server...");
     getMessages().then((data) => {
       console.table(data);
@@ -40,23 +36,17 @@ function ChatWindow() {
     });
   }, []);
 
-  const sendMessageToDatabase = (message: Message) => {
-    // Send the message to the server
-    console.log("Sending message to the server...");
-    postMessage(message).then((data) => {
-      console.table(data);
-    });
-  };
-
   const sendButtonHandler = () => {
+    if (message.trim() === "" || author.trim() === "") {
+      return;
+    }
+
     let newMessage: Message = {
       text: message,
       author: author,
       timestamp: new Date().toISOString(),
     };
 
-    setMessages([...messages, newMessage]);
-    sendMessageToDatabase(newMessage);
     sendMessageWS(newMessage);
     setMessage(""); // Clear the message input field
   };
@@ -68,25 +58,20 @@ function ChatWindow() {
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault(); // Prevent Enter from adding a new line
-
-      // If message is empty, do nothing
-      if (message.trim() === "") {
-        return;
-      }
       sendButtonHandler();
     }
   };
 
+  // Scroll to the bottom of the chat box when a new message is added
   const chatBoxRef = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     if (chatBoxRef.current) {
       chatBoxRef.current.scrollTop = chatBoxRef.current.scrollHeight;
     }
   }, [messages]);
 
+  // Automatically resize the message input field
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
-
   useEffect(() => {
     if (textAreaRef.current) {
       textAreaRef.current.style.height = "inherit";
@@ -107,7 +92,6 @@ function ChatWindow() {
           );
         })}
       </div>
-      <div>Last Message: {lastMessage}</div>
 
       <Spacer height="20px" />
       <div id="chat-input">
