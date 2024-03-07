@@ -4,6 +4,9 @@ import { Message } from "../../types/Message";
 import Spacer from "../Spacer";
 import MessageInstance from "./MessageInstance";
 import { useSubscription, useStompClient, IMessage } from "react-stomp-hooks";
+import Modal from "react-modal";
+
+Modal.setAppElement("#root");
 
 function ChatWindow() {
   useSubscription("/topic/messages", (message) =>
@@ -54,6 +57,7 @@ function ChatWindow() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [message, setMessage] = useState<string>("");
   const [author, setAuthor] = useState<string>("");
+  const [modalIsOpen, setModalIsOpen] = useState(true);
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === "Enter" && !event.shiftKey) {
@@ -95,12 +99,6 @@ function ChatWindow() {
 
       <Spacer height="20px" />
       <div id="chat-input">
-        <input
-          name="author"
-          value={author}
-          onChange={(e) => setAuthor(e.target.value)}
-        />
-        <Spacer width="10px" />
         <textarea
           ref={textAreaRef}
           id="message-input"
@@ -119,6 +117,24 @@ function ChatWindow() {
           Send
         </button>
       </div>
+      <Modal
+        isOpen={modalIsOpen}
+        onRequestClose={() => setModalIsOpen(false)}
+        contentLabel="Example Modal"
+        className="modal-content"
+        overlayClassName="overlay"
+        shouldCloseOnOverlayClick={false}
+        shouldCloseOnEsc={false}
+      >
+        <h2>Enter your username</h2>
+        <input
+          name="author"
+          value={author}
+          onChange={(e) => setAuthor(e.target.value)}
+        />
+        <Spacer width="20px" />
+        <button onClick={() => setModalIsOpen(false)}>Validate</button>
+      </Modal>
     </div>
   );
 }
