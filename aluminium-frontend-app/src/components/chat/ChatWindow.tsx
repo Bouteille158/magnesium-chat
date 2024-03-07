@@ -59,6 +59,13 @@ function ChatWindow() {
   const [author, setAuthor] = useState<string>("");
   const [modalIsOpen, setModalIsOpen] = useState(true);
 
+  const handleAuthorInput = () => {
+    if (author.trim() === "") {
+      return;
+    }
+    setModalIsOpen(false);
+  };
+
   const handleKeyDown = (event: React.KeyboardEvent) => {
     if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault(); // Prevent Enter from adding a new line
@@ -131,9 +138,10 @@ function ChatWindow() {
           name="author"
           value={author}
           onChange={(e) => setAuthor(e.target.value)}
+          className="modal-input"
         />
         <Spacer width="20px" />
-        <button onClick={() => setModalIsOpen(false)}>Validate</button>
+        <button onClick={() => handleAuthorInput()}>Validate</button>
       </Modal>
     </div>
   );
