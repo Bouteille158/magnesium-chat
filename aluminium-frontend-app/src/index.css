@@ -183,3 +183,11 @@ button:focus-visible {
   align-items: center;
   background-color: rgba(0, 0, 0, 0.5);
 }
+
+.modal-input {
+  font-size: 16px;
+}
+
+#chat-input > textarea {
+  font-size: 16px;
+}
