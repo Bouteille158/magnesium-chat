@@ -1,6 +1,10 @@
 # URL of the React frontend application
 aluminium.app.url=http://localhost:5173
 
+# VAPID keys for web push notifications
+vapid.public.key=BL
+vapid.private.key=00
+
 # H2 database configuration
 spring.datasource.url=jdbc:h2:mem:testdb
 spring.datasource.driverClassName=org.h2.Driver
