@@ -4,6 +4,16 @@
       "name": "aluminium.app.url",
       "type": "java.lang.String",
       "description": "URL of the aluminium front end application"
+    },
+    {
+      "name": "vapid.public.key",
+      "type": "java.lang.String",
+      "description": "Vapid public key for web push notifications"
+    },
+    {
+      "name": "vapid.private.key",
+      "type": "java.lang.String",
+      "description": "Vapid private key for web push notifications"
     }
   ]
 }
