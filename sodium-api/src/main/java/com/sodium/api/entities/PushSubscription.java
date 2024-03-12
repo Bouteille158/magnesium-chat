@@ -61,9 +61,12 @@ public class PushSubscription {
     }
 
     @Embeddable
-    public class Keys {
+    public static class Keys {
         private String p256dh;
         private String auth;
+
+        public Keys() {
+        }
 
         public String getP256dh() {
             return p256dh;
