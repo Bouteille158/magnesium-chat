@@ -37,25 +37,6 @@ export default defineConfig({
       workbox: {
         runtimeCaching: [
           {
-            urlPattern: new RegExp(
-              "^https://fonts.(?:googleapis|gstatic).com/(.*)"
-            ),
-            handler: "StaleWhileRevalidate",
-            options: {
-              cacheName: "google-fonts",
-              cacheableResponse: {
-                statuses: [0, 200],
-              },
-            },
-          },
-          {
-            urlPattern: /\.(?:png|gif|jpg|jpeg|webp|svg)$/,
-            handler: "CacheFirst",
-            options: {
-              cacheName: "images",
-            },
-          },
-          {
             urlPattern: /\.(?:js|css)$/,
             handler: "StaleWhileRevalidate",
           },
