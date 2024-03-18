@@ -1,4 +1,4 @@
-import "./App.css";
+import "./App.scss";
 import ChatWindow from "./components/chat/ChatWindow";
 import { StompSessionProvider } from "react-stomp-hooks";
 import { useEffect, useState } from "react";
