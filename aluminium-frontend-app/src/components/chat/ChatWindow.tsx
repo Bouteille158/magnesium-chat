@@ -6,6 +6,7 @@ import MessageInstance from "./MessageInstance";
 import { useSubscription, useStompClient, IMessage } from "react-stomp-hooks";
 import Modal from "react-modal";
 import { sendNotification } from "../../services/notification";
+import "./ChatWindow.scss";
 
 Modal.setAppElement("#root");
 

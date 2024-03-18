@@ -1,3 +1,5 @@
+import "./Header.scss";
+
 interface HeaderProps {
   title: string;
 }
