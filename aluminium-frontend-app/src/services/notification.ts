@@ -1,6 +1,7 @@
 import { getVapidPublicKey } from "./vapidKeys";
 
 const apiURL = `${import.meta.env.VITE_SODIUM_API_URL}/api`;
+declare var window: any;
 
 export const sendNotification = (
   title: string,
@@ -16,6 +17,33 @@ export const sendNotification = (
   }
 };
 
+export async function askNotificationPermission(): Promise<boolean> {
+  if (!("Notification" in window)) {
+    console.log("This browser does not support notifications!");
+    return false;
+  }
+
+  if (Notification.permission === "granted") {
+    console.log("Permission for notifications was already granted");
+    return true;
+  }
+
+  if (Notification.permission !== "denied") {
+    try {
+      const permission = await Notification.requestPermission();
+      console.log("Notification permission: ", permission);
+      if (permission === "granted") {
+        console.log("Permission for notifications was granted");
+        return true;
+      }
+    } catch (err) {
+      console.error("Error during notification permission request: ", err);
+    }
+  }
+
+  return false;
+}
+
 export async function subscribeToPushNotifications() {
   const vapidPublicKey = (await getVapidPublicKey()).trim();
   console.log("vapidPublicKey: ", vapidPublicKey);
@@ -27,7 +55,7 @@ export async function subscribeToPushNotifications() {
     navigator.serviceWorker.ready
       .then((registration) => {
         if (registration) {
-          console.log("Service worker is ready");
+          console.log("Service worker is ready", registration);
         } else {
           console.log("Service worker is not ready");
         }
