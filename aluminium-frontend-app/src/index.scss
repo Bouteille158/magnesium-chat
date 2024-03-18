@@ -79,6 +79,8 @@ button:focus-visible {
   width: 100%;
   box-sizing: border-box;
   padding: 10px;
+  position: fixed;
+  bottom: 0;
 }
 
 #message-input {
@@ -101,6 +103,7 @@ button:focus-visible {
   overflow-x: hidden;
   overflow-y: auto;
   box-sizing: border-box;
+  margin-bottom: 200px;
 }
 
 #chat-window {
@@ -117,7 +120,7 @@ button:focus-visible {
 #root {
   display: flex;
   box-sizing: border-box;
-  padding: 10px;
+  padding: 2px;
   margin: 0px;
   width: 100%;
   height: 100%;
@@ -154,7 +157,6 @@ button:focus-visible {
   margin-left: 10px;
 }
 
-/* styles.css */
 .modal-content {
   max-width: 50%;
   width: 300px;
