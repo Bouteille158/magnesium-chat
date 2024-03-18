@@ -6,6 +6,7 @@ import {
   askNotificationPermission,
   subscribeToPushNotifications,
 } from "./services/notification";
+import Header from "./components/Header";
 
 const websocketURL = `${import.meta.env.VITE_SODIUM_API_URL}/socket`;
 
@@ -36,11 +37,12 @@ function App() {
   console.log("websocketURL: ", websocketURL);
 
   return (
-    <>
-      <StompSessionProvider url={websocketURL}>
+    <StompSessionProvider url={websocketURL}>
+      <div className="App">
+        <Header title="Welcome to chat" />
         <ChatWindow />
-      </StompSessionProvider>
-    </>
+      </div>
+    </StompSessionProvider>
   );
 }
 
