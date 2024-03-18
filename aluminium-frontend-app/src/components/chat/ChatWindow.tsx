@@ -107,9 +107,9 @@ function ChatWindow() {
             />
           );
         })}
+        <Spacer height="10px" />
       </div>
 
-      <Spacer height="20px" />
       <div id="chat-input">
         <textarea
           ref={textAreaRef}
