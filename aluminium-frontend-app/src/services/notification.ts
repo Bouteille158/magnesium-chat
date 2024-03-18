@@ -17,21 +17,34 @@ export const sendNotification = (
   }
 };
 
+export function notificationsAreSupported(): boolean {
+  return "Notification" in window;
+}
+
+export function notificationsAreTurnedOn(): boolean {
+  if (Notification.permission === "granted") {
+    console.log("Permission for notifications was already granted");
+    return true;
+  }
+
+  return false;
+}
+
 export async function askNotificationPermission(): Promise<boolean> {
-  if (!("Notification" in window)) {
-    console.log("This browser does not support notifications!");
+  if (!notificationsAreSupported()) {
+    console.warn("This browser does not support notifications!");
     return false;
   }
 
-  if (Notification.permission === "granted") {
-    console.log("Permission for notifications was already granted");
+  if (notificationsAreTurnedOn()) {
+    console.log("Permission for notifications is already granted");
     return true;
   }
 
   if (Notification.permission !== "denied") {
     try {
       const permission = await Notification.requestPermission();
-      console.log("Notification permission: ", permission);
+      console.log("Notification permission status: ", permission);
       if (permission === "granted") {
         console.log("Permission for notifications was granted");
         return true;
@@ -66,14 +79,6 @@ export async function subscribeToPushNotifications() {
   } else {
     console.log("Service worker is not supported in this browser");
     return;
-  }
-
-  // Check if the notification permission has been denied
-  if (Notification.permission !== "granted") {
-    console.error("Permission for notifications was not granted");
-    return;
-  } else {
-    console.log("Permission for notifications was granted");
   }
 
   // Check if the push manager is supported
