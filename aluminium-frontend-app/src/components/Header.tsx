@@ -12,7 +12,33 @@ interface HeaderProps {
 function Header(props: HeaderProps) {
   return (
     <header className="AppHeader">
-      <Spacer width="60px" />
+      <Spacer width="20px" />
+      <div
+        onClick={() => {
+          console.log("Menu clicked");
+        }}
+        style={{
+          cursor: "pointer",
+          width: "40px",
+          height: "40px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <p
+          style={{
+            width: "100%",
+            height: "100%",
+            justifyContent: "center",
+            alignItems: "center",
+            display: "flex",
+            fontSize: "40px",
+          }}
+        >
+          🍔
+        </p>
+      </div>
       <h2
         style={{
           flex: 1,
