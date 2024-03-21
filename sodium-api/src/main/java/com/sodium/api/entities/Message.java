@@ -19,6 +19,7 @@ public class Message {
     public Message() {
     }
 
+    // TODO: Create timestamp automatically
     public Message(String text, String author, String timestamp) {
         this.text = text;
         this.author = author;
