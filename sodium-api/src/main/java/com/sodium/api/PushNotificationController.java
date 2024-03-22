@@ -82,6 +82,15 @@ public class PushNotificationController {
     @PostMapping("/api/subscribeToPushNotification")
     public ResponseEntity<String> subscribeToPushNotification(@RequestBody PushSubscription subscription) {
         System.out.println("Subscription: " + subscription.toString());
+        System.out.println("Subscription endpoint: " + subscription.getEndpoint());
+        // Check if the subscription already exists
+        pushSubscriptionRepository.findByEndpoint(subscription.getEndpoint());
+        if (pushSubscriptionRepository.findByEndpoint(subscription.getEndpoint()) != null) {
+            System.out.println("Subscription already exists");
+            return ResponseEntity.ok("Subscription already exists");
+        }
+
+        System.out.println("Subscription does not exist");
         pushSubscriptionRepository.save(subscription);
         return ResponseEntity.ok("Subscription registered successfully");
     }
