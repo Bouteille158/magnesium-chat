@@ -5,5 +5,5 @@ import org.springframework.data.repository.CrudRepository;
 import com.sodium.api.entities.PushSubscription;
 
 public interface PushSubscriptionRepository extends CrudRepository<PushSubscription, Long> {
-
+    PushSubscription findByEndpoint(String endpoint);
 }
