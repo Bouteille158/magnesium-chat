@@ -1,4 +1,4 @@
-package com.sodium.api;
+package com.sodium.api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;

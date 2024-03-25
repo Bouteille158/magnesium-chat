@@ -1,4 +1,4 @@
-package com.sodium.api;
+package com.sodium.api.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;

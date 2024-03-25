@@ -1,4 +1,4 @@
-package com.sodium.api;
+package com.sodium.api.controllers;
 
 import nl.martijndwars.webpush.*;
 import org.bouncycastle.jce.provider.BouncyCastleProvider;

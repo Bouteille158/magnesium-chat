@@ -1,4 +1,4 @@
-package com.sodium.api;
+package com.sodium.api.controllers;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

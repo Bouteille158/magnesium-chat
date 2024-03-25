@@ -11,6 +11,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import static java.util.Collections.emptyList;
 
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+import com.sodium.api.controllers.MessageController;
 import com.sodium.api.repositories.MessageRepository;
 
 @WebMvcTest(MessageController.class)
