@@ -11,7 +11,17 @@ spring.datasource.driverClassName=org.h2.Driver
 spring.datasource.username=sa
 spring.datasource.password=password
 spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
+spring.jpa.hibernate.ddl-auto=none
+spring.jpa.defer-datasource-initialization=true
+spring.sql.init.mode=always
 
 # Enable H2 console
 spring.h2.console.enabled=true
 spring.h2.console.path=/h2-console
+
+# Debug log level
+logging.level.org.springframework.security=DEBUG
+
+# RSA keys for JWT
+rsa.private.key=123
+rsa.public.key=456
