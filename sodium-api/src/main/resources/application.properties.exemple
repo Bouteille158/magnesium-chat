@@ -13,11 +13,18 @@ spring.datasource.password=password
 spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
 spring.jpa.hibernate.ddl-auto=none
 spring.jpa.defer-datasource-initialization=true
-spring.sql.init.mode=always
+spring.sql.init.mode=embedded
 
 # Enable H2 console
 spring.h2.console.enabled=true
 spring.h2.console.path=/h2-console
+
+# PostgreSQL database configuration
+spring.datasource.url=jdbc:postgresql://localhost:5432/nom_de_votre_base_de_donnees
+spring.datasource.driverClassName=org.postgresql.Driver
+spring.datasource.username=nom_utilisateur
+spring.datasource.password=mot_de_passe
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
 
 # Debug log level
 logging.level.org.springframework.security=DEBUG
