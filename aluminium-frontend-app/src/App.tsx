@@ -7,12 +7,15 @@ import {
   subscribeToPushNotifications,
 } from "./services/notification";
 import Header from "./components/Header";
+import Cookies from "js-cookie";
+import axios from "axios";
 
 const websocketURL = `${import.meta.env.VITE_SODIUM_API_URL}/socket`;
 
 function App() {
   const [isNotificationPermissionGranted, setIsNotificationPermissionGranted] =
     useState<boolean>(false);
+  const [token, _] = useState<string | undefined>(Cookies.get("token"));
 
   useEffect(() => {
     console.log("useEffect for askNotificationPermission");
@@ -21,6 +24,8 @@ function App() {
       console.log("permission status: ", permission);
       setIsNotificationPermissionGranted(permission);
     });
+    console.log("token", token);
+    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   }, []);
 
   useEffect(() => {
