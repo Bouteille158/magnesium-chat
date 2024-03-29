@@ -1,12 +1,23 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
+const apiURL = `${import.meta.env.VITE_SODIUM_API_URL}`;
+
 export async function authenticate(username: String, password: String) {
   try {
-    const response = await axios.post("/login", {
-      username,
-      password,
-    });
+    const encodedCredentials = btoa(`${username}:${password}`);
+
+    const response = await axios.post(
+      apiURL + "/login",
+      {},
+      {
+        headers: {
+          Authorization: `Basic ${encodedCredentials}`,
+        },
+      }
+    );
+
+    console.log("Réponse de l'API", response.data);
 
     const token = response.data;
 
