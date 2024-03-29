@@ -12,6 +12,10 @@ export async function getVapidPublicKey(): Promise<string | Error> {
         "content-type": "application/text",
       },
     })
+    .then((response) => {
+      console.log("VAPID public key: ", response.data);
+      return response.data;
+    })
     .catch((error) => {
       console.error("Error while fetching VAPID public key: ", error);
       return error;
