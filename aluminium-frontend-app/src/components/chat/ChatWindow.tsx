@@ -87,8 +87,10 @@ function ChatWindow() {
     console.log("password: ", password);
     authenticate(username, password);
 
+    setAuthor(username);
     setUsername("");
     setPassword("");
+    setAuthIsOpen(false);
   };
 
   // Scroll to the bottom of the chat box when a new message is added
