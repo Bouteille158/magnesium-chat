@@ -58,7 +58,12 @@ export async function askNotificationPermission(): Promise<boolean> {
 }
 
 export async function subscribeToPushNotifications() {
-  const vapidPublicKey = (await getVapidPublicKey()).trim();
+  let vapidPublicKey = await getVapidPublicKey();
+  if (vapidPublicKey instanceof Error) {
+    console.error("Error while fetching VAPID public key: ", vapidPublicKey);
+    return;
+  }
+  vapidPublicKey = vapidPublicKey.trim();
   console.log("vapidPublicKey: ", vapidPublicKey);
   const convertedVapidKey = urlBase64ToUint8Array(vapidPublicKey);
   console.log("convertedVapidKey: ", convertedVapidKey);
