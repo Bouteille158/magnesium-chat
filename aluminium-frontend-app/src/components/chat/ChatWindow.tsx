@@ -7,6 +7,7 @@ import { useSubscription, useStompClient, IMessage } from "react-stomp-hooks";
 import Modal from "react-modal";
 import { sendNotification } from "../../services/notification";
 import "./ChatWindow.scss";
+import { authenticate } from "../../services/authentication";
 
 Modal.setAppElement("#root");
 
@@ -62,7 +63,10 @@ function ChatWindow() {
   const [messages, setMessages] = useState<Message[]>([]);
   const [message, setMessage] = useState<string>("");
   const [author, setAuthor] = useState<string>("");
-  const [modalIsOpen, setModalIsOpen] = useState(true);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [authIsOpen, setAuthIsOpen] = useState(true);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleAuthorInput = () => {
     if (author.trim() === "") {
@@ -76,6 +80,15 @@ function ChatWindow() {
       event.preventDefault(); // Prevent Enter from adding a new line
       sendButtonHandler();
     }
+  };
+
+  const handleAuthentication = () => {
+    console.log("username: ", username);
+    console.log("password: ", password);
+    authenticate(username, password);
+
+    setUsername("");
+    setPassword("");
   };
 
   // Scroll to the bottom of the chat box when a new message is added
@@ -147,6 +160,32 @@ function ChatWindow() {
         />
         <Spacer width="20px" />
         <button onClick={() => handleAuthorInput()}>Validate</button>
+      </Modal>
+
+      <Modal
+        isOpen={authIsOpen}
+        onRequestClose={() => setAuthIsOpen(false)}
+        contentLabel="Authentication modal"
+        className="modal-content"
+        overlayClassName="overlay"
+        shouldCloseOnOverlayClick={false}
+        shouldCloseOnEsc={false}
+      >
+        <h2>Username</h2>
+        <input
+          name="username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+        />
+        <h2>Password</h2>
+        <input
+          name="password"
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+        <Spacer width="20px" />
+        <button onClick={() => handleAuthentication()}>Validate</button>
       </Modal>
     </div>
   );
