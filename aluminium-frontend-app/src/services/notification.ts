@@ -1,3 +1,4 @@
+import Cookies from "js-cookie";
 import { getVapidPublicKey } from "./vapidKeys";
 
 const apiURL = `${import.meta.env.VITE_SODIUM_API_URL}/api`;
@@ -124,11 +125,13 @@ export async function subscribeToPushNotifications() {
   }
 
   try {
+    // TODO: Use axios instead of fetch
     await fetch(apiURL + "/subscribeToPushNotification", {
       method: "POST",
       body: JSON.stringify(subscription),
       headers: {
         "content-type": "application/json",
+        Authorization: `Bearer ${Cookies.get("token")} `,
       },
     });
   } catch (err) {
