@@ -42,7 +42,12 @@ function App() {
   console.log("websocketURL: ", websocketURL);
 
   return (
-    <StompSessionProvider url={websocketURL}>
+    <StompSessionProvider
+      url={websocketURL}
+      onConnect={() => {
+        console.log("Connected to the WebSocket server");
+      }}
+    >
       <div className="App">
         <Header title="Welcome to chat" />
         <ChatWindow />
