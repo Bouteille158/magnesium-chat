@@ -32,6 +32,8 @@ public class SpringSecurityConfig {
     @Value("${rsa.private.key}")
     private String jwtKey;
 
+    // TODO : Remove suppress warning in production
+    @SuppressWarnings("removal")
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
@@ -43,6 +45,9 @@ public class SpringSecurityConfig {
                     auth.requestMatchers("/admin/**").hasRole("SCOPE_ROLE_ADMIN");
                     auth.requestMatchers("/api/**").hasAnyAuthority("SCOPE_ROLE_USER", "SCOPE_ROLE_ADMIN");
                     auth.requestMatchers("/register").permitAll();
+                    auth.requestMatchers("/socket/**").permitAll();
+                    auth.requestMatchers("/topic/**").permitAll();
+                    auth.requestMatchers("/app/**").permitAll();
                     auth.requestMatchers("/h2-console/**").permitAll();
                     auth.anyRequest().authenticated();
                 })
