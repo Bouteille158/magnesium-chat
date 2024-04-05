@@ -84,7 +84,6 @@ function ChatWindow() {
 
   const handleAuthentication = () => {
     console.log("username: ", username);
-    console.log("password: ", password);
     authenticate(username, password);
 
     setAuthor(username);
