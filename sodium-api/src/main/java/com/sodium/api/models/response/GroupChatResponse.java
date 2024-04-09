@@ -1,4 +1,4 @@
-package com.sodium.api.models;
+package com.sodium.api.models.response;
 
 public class GroupChatResponse {
     private String message;
