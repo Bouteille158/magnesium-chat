@@ -54,7 +54,13 @@ public class GroupChatController {
             return ResponseEntity.badRequest().body(new GroupChatResponse("User not found", null));
         }
 
-        groupChat.addUser(user);
+        try {
+            groupChat.addUser(user);
+            groupChatRepository.save(groupChat);
+        } catch (Exception e) {
+            System.out.println(e);
+            return ResponseEntity.badRequest().body(new GroupChatResponse("User addition failed", null));
+        }
 
         return ResponseEntity.ok(new GroupChatResponse("User added to group chat", groupChat.getId()));
     }
