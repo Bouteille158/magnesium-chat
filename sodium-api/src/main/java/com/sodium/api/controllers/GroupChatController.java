@@ -28,19 +28,15 @@ public class GroupChatController {
     @Autowired
     private DBUserRepository userRepository;
 
+    // TODO: add admin in route
     @GetMapping("/api/groups")
-    public ResponseEntity<String> getGroups() {
+    public ResponseEntity<GroupChatListResponse> getGroups() {
         List<GroupChat> groups = groupChatRepository.findAll();
-        StringBuilder groupStringBuilder = new StringBuilder();
+        GroupChatListResponse groupChatListResponse = new GroupChatListResponse(groups);
 
-        groups.forEach(group -> {
-            System.out.println(group.toString());
-            groupStringBuilder.append(group.toString() + "\n");
-        });
+        // TODO: remove passwords and personnal info from response
 
-        // TODO : return a list of group chat names instead of string
-
-        return ResponseEntity.ok(groupStringBuilder.toString());
+        return ResponseEntity.ok(groupChatListResponse);
     }
 
     @PostMapping("/api/addToGroupChat")
