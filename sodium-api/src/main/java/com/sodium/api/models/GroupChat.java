@@ -1,10 +1,10 @@
 package com.sodium.api.models;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import jakarta.persistence.JoinColumn;
-
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -20,9 +20,9 @@ public class GroupChat {
 
     private String name;
 
-    @ManyToMany
-    @JoinTable(name = "group_user", joinColumns = @JoinColumn(name = "group_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
-    private List<DBUser> users = new ArrayList<>();
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "groupchat_user", joinColumns = @JoinColumn(name = "group_id"), inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private Set<DBUser> users = new HashSet<>();
 
     public GroupChat() {
     }
@@ -47,11 +47,11 @@ public class GroupChat {
         this.name = name;
     }
 
-    public List<DBUser> getUsers() {
+    public Set<DBUser> getUsers() {
         return users;
     }
 
-    public void setUsers(List<DBUser> users) {
+    public void setUsers(Set<DBUser> users) {
         this.users = users;
     }
 
