@@ -1,25 +1,28 @@
 package com.sodium.api.models.response;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import com.sodium.api.models.GroupChat;
-
 public class GroupChatListResponse {
-    private List<GroupChat> groupChats;
+    private List<GroupChatResponse> groupChats;
 
-    public GroupChatListResponse(List<GroupChat> groupChats) {
+    public GroupChatListResponse() {
+        this.groupChats = new ArrayList<>();
+    }
+
+    public GroupChatListResponse(List<GroupChatResponse> groupChats) {
         this.groupChats = groupChats;
     }
 
-    public List<GroupChat> getGroupChats() {
+    public List<GroupChatResponse> getGroupChats() {
         return groupChats;
     }
 
-    public void setGroupChats(List<GroupChat> groupChats) {
+    public void setGroupChats(List<GroupChatResponse> groupChats) {
         this.groupChats = groupChats;
     }
 
-    public void addGroupChat(GroupChat groupChat) {
+    public void addGroupChat(GroupChatResponse groupChat) {
         this.groupChats.add(groupChat);
     }
 
