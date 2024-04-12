@@ -99,4 +99,29 @@ public class GroupChatController {
         return ResponseEntity.ok(new AddToGroupChatResponse("Group chat created", groupChat.getId()));
     }
 
+    @PostMapping("/api/removeFromGroupChat")
+    public ResponseEntity<AddToGroupChatResponse> removeFromGroupChat(
+            @RequestBody GroupChatRequestBody groupChatRequestBody) {
+        GroupChat groupChat = groupChatRepository.findById(groupChatRequestBody.getGroupChatId()).get();
+        if (groupChat == null) {
+            return ResponseEntity.badRequest().body(new AddToGroupChatResponse("Group chat not found", null));
+        }
+
+        DBUser user = userRepository.findById(groupChatRequestBody.getUserId()).get();
+        if (user == null) {
+            return ResponseEntity.badRequest().body(new AddToGroupChatResponse("User not found", null));
+        }
+
+        try {
+            groupChat.removeUser(user);
+            groupChatRepository.save(groupChat);
+        } catch (Exception e) {
+            System.out.println(e);
+            return ResponseEntity.badRequest()
+                    .body(new AddToGroupChatResponse("User removal failed", groupChat.getId()));
+        }
+
+        return ResponseEntity.ok(new AddToGroupChatResponse("User removed from group chat", groupChat.getId()));
+    }
+
 }
