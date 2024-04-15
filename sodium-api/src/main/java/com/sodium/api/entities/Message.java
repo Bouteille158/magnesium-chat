@@ -19,11 +19,11 @@ public class Message {
     public Message() {
     }
 
-    // TODO: Create timestamp automatically
     public Message(String text, String author, String timestamp) {
         this.text = text;
         this.author = author;
-        this.timestamp = timestamp;
+        this.timestamp = Instant.now().toString();
+
     }
 
     public Long getId() {
