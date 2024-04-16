@@ -1,5 +1,7 @@
 package com.sodium.api.entities;
 
+import java.time.Instant;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
