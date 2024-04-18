@@ -1,4 +1,4 @@
-package com.sodium.api.models.response;
+package com.sodium.api.models.responses;
 
 import java.util.ArrayList;
 import java.util.List;

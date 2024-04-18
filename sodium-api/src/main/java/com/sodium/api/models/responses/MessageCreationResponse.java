@@ -1,4 +1,4 @@
-package com.sodium.api.models.response;
+package com.sodium.api.models.responses;
 
 public class MessageCreationResponse {
     private Long messageId;

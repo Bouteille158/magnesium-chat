@@ -1,4 +1,4 @@
-package com.sodium.api.models.request;
+package com.sodium.api.models.requests;
 
 public class GroupChatCreationRequestBody {
     private String name;

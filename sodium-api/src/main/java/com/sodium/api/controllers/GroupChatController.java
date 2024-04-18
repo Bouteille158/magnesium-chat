@@ -4,12 +4,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sodium.api.models.DBUser;
 import com.sodium.api.models.GroupChat;
-import com.sodium.api.models.request.GroupChatCreationRequestBody;
-import com.sodium.api.models.request.GroupChatRequestBody;
-import com.sodium.api.models.response.GroupChatListResponse;
-import com.sodium.api.models.response.GroupChatResponse;
-import com.sodium.api.models.response.AddToGroupChatResponse;
-import com.sodium.api.models.response.UserResponse;
+import com.sodium.api.models.requests.GroupChatCreationRequestBody;
+import com.sodium.api.models.requests.GroupChatRequestBody;
+import com.sodium.api.models.responses.AddToGroupChatResponse;
+import com.sodium.api.models.responses.GroupChatListResponse;
+import com.sodium.api.models.responses.GroupChatResponse;
+import com.sodium.api.models.responses.UserResponse;
 import com.sodium.api.repositories.DBUserRepository;
 import com.sodium.api.repositories.GroupChatRepository;
 

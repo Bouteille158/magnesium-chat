@@ -5,7 +5,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sodium.api.entities.Message;
 import com.sodium.api.models.GroupChat;
 import com.sodium.api.models.request.MessageCreationRequest;
-import com.sodium.api.models.response.MessageCreationResponse;
+import com.sodium.api.models.requests.MessageCreationRequest;
+import com.sodium.api.models.responses.MessageCreationResponse;
 import com.sodium.api.repositories.GroupChatRepository;
 import com.sodium.api.repositories.MessageRepository;
 

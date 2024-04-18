@@ -1,4 +1,4 @@
-package com.sodium.api.models.request;
+package com.sodium.api.models.requests;
 
 import com.sodium.api.entities.Message;
 
