@@ -1,7 +1,5 @@
 package com.sodium.api.models;
 
-import com.sodium.api.entities.Message;
-
 public class GroupMessage {
     private Long id;
     private String text;

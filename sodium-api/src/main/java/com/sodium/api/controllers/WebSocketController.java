@@ -5,7 +5,7 @@ import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 
-import com.sodium.api.entities.Message;
+import com.sodium.api.models.Message;
 import com.sodium.api.repositories.MessageRepository;
 
 @Controller

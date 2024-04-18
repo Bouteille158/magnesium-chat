@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sodium.api.entities.PushSubscription;
+import com.sodium.api.models.PushSubscription;
 import com.sodium.api.repositories.PushSubscriptionRepository;
 
 import java.security.GeneralSecurityException;

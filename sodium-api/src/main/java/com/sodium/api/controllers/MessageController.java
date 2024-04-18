@@ -2,9 +2,9 @@ package com.sodium.api.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 
-import com.sodium.api.entities.Message;
 import com.sodium.api.models.GroupChat;
 import com.sodium.api.models.GroupMessage;
+import com.sodium.api.models.Message;
 import com.sodium.api.models.exceptions.ItemNotFoundException;
 import com.sodium.api.models.requests.MessageCreationRequest;
 import com.sodium.api.models.responses.GroupMessagesResponse;

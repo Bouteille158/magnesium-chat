@@ -1,6 +1,6 @@
 package com.sodium.api.models.requests;
 
-import com.sodium.api.entities.Message;
+import com.sodium.api.models.Message;
 
 public class MessageCreationRequest {
     private Message message;

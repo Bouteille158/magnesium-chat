@@ -1,4 +1,4 @@
-package com.sodium.api.entities;
+package com.sodium.api.models;
 
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.Embedded;

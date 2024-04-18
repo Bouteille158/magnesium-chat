@@ -1,8 +1,6 @@
-package com.sodium.api.entities;
+package com.sodium.api.models;
 
 import java.time.Instant;
-
-import com.sodium.api.models.GroupChat;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
