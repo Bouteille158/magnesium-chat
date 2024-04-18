@@ -3,8 +3,6 @@ package com.sodium.api.models;
 import java.util.HashSet;
 import java.util.Set;
 
-import com.sodium.api.entities.Message;
-
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;

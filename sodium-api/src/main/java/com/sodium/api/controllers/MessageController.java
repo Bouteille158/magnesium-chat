@@ -1,7 +1,6 @@
 package com.sodium.api.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
 import com.sodium.api.entities.Message;
 import com.sodium.api.models.GroupChat;
