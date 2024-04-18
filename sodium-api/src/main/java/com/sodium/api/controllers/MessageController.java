@@ -1,11 +1,14 @@
 package com.sodium.api.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 
 import com.sodium.api.entities.Message;
 import com.sodium.api.models.GroupChat;
-import com.sodium.api.models.request.MessageCreationRequest;
+import com.sodium.api.models.GroupMessage;
+import com.sodium.api.models.exceptions.ItemNotFoundException;
 import com.sodium.api.models.requests.MessageCreationRequest;
+import com.sodium.api.models.responses.GroupMessagesResponse;
 import com.sodium.api.models.responses.MessageCreationResponse;
 import com.sodium.api.repositories.GroupChatRepository;
 import com.sodium.api.repositories.MessageRepository;
@@ -13,6 +16,7 @@ import com.sodium.api.repositories.MessageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -28,6 +32,24 @@ public class MessageController {
     @GetMapping("/messages")
     public Iterable<Message> getMessages() {
         return messageRepository.findAll();
+    }
+
+    @GetMapping("/groupMessages/{groupId}")
+    public ResponseEntity<GroupMessagesResponse> getMessagesByGroup(@PathVariable Integer groupId) {
+        // TODO check if user is in the chatgroup
+        GroupChat groupChat = groupChatRepository.findById(groupId).orElseThrow(() -> new ItemNotFoundException(
+                String.format("Group chat with id %d not found", groupId)));
+
+        Iterable<Message> messagesFromGroup = messageRepository.findByGroupChat(groupChat);
+
+        GroupMessagesResponse groupMessagesResponse = new GroupMessagesResponse();
+
+        for (Message message : messagesFromGroup) {
+            groupMessagesResponse.addMessage(
+                    new GroupMessage(message));
+        }
+
+        return ResponseEntity.ok(groupMessagesResponse);
     }
 
     @PostMapping("/messages")

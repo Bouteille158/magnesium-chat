@@ -3,6 +3,8 @@ package com.sodium.api.models;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.sodium.api.entities.Message;
+
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
@@ -74,5 +76,4 @@ public class GroupChat {
     public void removeUserById(Integer userId) {
         this.users.removeIf(user -> user.getId().equals(userId));
     }
-
 }
