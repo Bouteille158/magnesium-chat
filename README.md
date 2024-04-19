@@ -54,6 +54,13 @@ spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
 # Enable H2 console
 spring.h2.console.enabled=true
 spring.h2.console.path=/h2-console
+
+# Logging configuration
+logging.level.org.springframework.security=DEBUG
+
+# RSA key pair for JWT
+rsa.private.key=rpk
+rsa.public.key=skoq
 ```
 
 #### Front-end
