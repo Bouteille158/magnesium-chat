@@ -1,12 +1,12 @@
 package com.sodium.api.models;
 
 public class UserGroup {
-    private String name;
     private Integer id;
+    private String name;
 
-    public UserGroup(String name, Integer id) {
-        this.name = name;
+    public UserGroup(Integer id, String name) {
         this.id = id;
+        this.name = name;
     }
 
     public UserGroup() {
