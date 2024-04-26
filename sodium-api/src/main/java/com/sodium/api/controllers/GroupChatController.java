@@ -83,7 +83,7 @@ public class GroupChatController {
         Jwt jwt = jwtDecoder.decode(token);
 
         // Récupère l'ID de l'utilisateur à partir du token
-        Long userId = jwt.getClaim("userId");
+        Long userId = jwt.getClaim("user_id");
 
         List<GroupChat> groups = groupChatRepository.findByUsersId(userId);
 
